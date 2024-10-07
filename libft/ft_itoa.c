@@ -31,25 +31,26 @@ char	*ft_itoa(int n)
 {
 	char		*nb;
 	long int	nc;
-	int			index[2];
+	int		i;
+	int		j;
 
 	nc = n;
-	index[1] = 0;
+	j = 0;
 	if (n < 0)
 	{
 		nc *= -1;
-		index[1]++;
+		j++;
 	}
-	index[0] = ft_digitlen(nc) + index[1];
-	nb = malloc((index[0] + 1) * sizeof(char));
+	i = ft_digitlen(nc) + j;
+	nb = malloc((i + 1) * sizeof(char));
 	if (!nb)
 		return (NULL);
 	if (n < 0)
 		nb[0] = '-';
-	nb[index[0]] = '\0';
-	while (index[0]-- > index[1])
+	nb[i] = '\0';
+	while (i-- > j)
 	{
-		nb[index[0]] = nc % 10 + '0';
+		nb[i] = nc % 10 + '0';
 		nc /= 10;
 	}
 	return (nb);
